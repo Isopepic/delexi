@@ -7,9 +7,9 @@ function extractPlaylistId(url) {
 document.getElementById("startButton").addEventListener("click", () => {
   const link = document.getElementById("playlistInput").value;
   const reaction = document.getElementById("reaction");
-  const id = extractPlaylistId(link);
+  const playlistId = extractPlaylistId(link);
 
-  if (!id) {
+  if (!playlistId) {
     reaction.textContent = "⛔ Lien invalide.";
   } else {
     window.location.href = `result.html?playlist=${playlistId}`;
