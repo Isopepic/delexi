@@ -1,43 +1,28 @@
-function getPlaylistIdFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("playlist");
-}
+// Récupère l'ID depuis l'URL
+const params = new URLSearchParams(window.location.search);
+const playlistId = params.get("playlist");
 
-function formatDuration(ms) {
-  const min = Math.floor(ms / 60000);
-  const sec = Math.floor((ms % 60000) / 1000).toString().padStart(2, '0');
-  return `${min}:${sec}`;
-}
+if (!playlistId) {
+  document.getElementById("playlistInfo").textContent = "❌ Aucune playlist reçue.";
+} else {
+  document.getElementById("playlistInfo").textContent = `ID de la playlist : ${playlistId}`;
 
-function simulateFetchPlaylist(id) {
-  return {
-    name: "Fake Playlist",
-    tracks: [
-      { title: "No Role Modelz", artist: "J. Cole", duration: 260000 },
-      { title: "Money Trees", artist: "Kendrick Lamar", duration: 240000 },
-      { title: "N95", artist: "Kendrick Lamar", duration: 200000 },
-    ]
-  };
-}
-
-function displayPlaylist() {
-  const id = getPlaylistIdFromURL();
-  if (!id) return;
-
-  const data = simulateFetchPlaylist(id);
-  document.getElementById("playlistInfo").innerHTML = `📝 Nom de la playlist : <strong>${data.name}</strong>`;
+  const fakeTracks = [
+    { title: "Intro", artist: "Julio", duration: "1:20" },
+    { title: "Empire", artist: "Brutus Max", duration: "3:05" },
+    { title: "Glory", artist: "SPQR", duration: "2:47" },
+  ];
 
   const tbody = document.querySelector("#tracksTable tbody");
-  data.tracks.forEach((track, index) => {
+
+  fakeTracks.forEach((track, index) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${index + 1}</td>
       <td>${track.title}</td>
       <td>${track.artist}</td>
-      <td>${formatDuration(track.duration)}</td>
+      <td>${track.duration}</td>
     `;
     tbody.appendChild(row);
   });
 }
-
-displayPlaylist();

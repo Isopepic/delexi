@@ -3,7 +3,6 @@ function extractPlaylistId(url) {
   return match ? match[1] : null;
 }
 
-
 document.getElementById("startButton").addEventListener("click", () => {
   const link = document.getElementById("playlistInput").value;
   const reaction = document.getElementById("reaction");
@@ -13,11 +12,9 @@ document.getElementById("startButton").addEventListener("click", () => {
     reaction.textContent = "⛔ Lien invalide.";
   } else {
     window.location.href = `result.html?playlist=${playlistId}`;
-;
   }
 });
 
-// 📜 Lorsqu'on clique sur "Mes Delexis"
 document.getElementById("historyButton").addEventListener("click", () => {
   alert("🔖 (fonction Mes Delexis à venir)");
 });
