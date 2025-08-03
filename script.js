@@ -12,7 +12,8 @@ document.getElementById("startButton").addEventListener("click", () => {
   if (!id) {
     reaction.textContent = "⛔ Lien invalide.";
   } else {
-    reaction.textContent = `🎧 Playlist ID: ${id}`;
+    window.location.href = `result.html?playlist=${playlistId}`;
+;
   }
 });
 
